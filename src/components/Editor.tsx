@@ -1,5 +1,3 @@
-"use client";
-
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Highlight from "@tiptap/extension-highlight";
@@ -7,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Toggle } from "@/components/ui/toggle";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios"; // Import AxiosError
 
 const Editor = () => {
   const [prompt, setPrompt] = useState("");
@@ -42,7 +40,7 @@ const Editor = () => {
       const response = await axios.post(
         "https://openrouter.ai/api/v1/chat/completions",
         {
-          model: "deepseek:deepseek-r1-zero", // Replace with "mistral-7b-instruct" if needed
+          model: "deepseek:deepseek-r1-zero",
           messages: [
             {
               role: "user",
@@ -61,12 +59,13 @@ const Editor = () => {
       );
 
       let modifiedText = response.data.choices[0].message.content;
-      // Remove LaTeX boxing if present
       modifiedText = modifiedText.replace(/\\boxed\{(.*?)\}/g, "$1").trim();
       setOutput(modifiedText);
     } catch (error) {
-      console.error("Error modifying text:", error.response?.data || error.message);
-      setOutput("Error: " + (error.response?.data?.message || error.message));
+      // Type error as AxiosError
+      const axiosError = error as AxiosError<{ message?: string }>;
+      console.error("Error modifying text:", axiosError.response?.data || axiosError.message);
+      setOutput("Error: " + (axiosError.response?.data?.message || axiosError.message));
     }
   };
 

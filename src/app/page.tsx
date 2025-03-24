@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50">
-      <Header />
+      {/* <Header /> */}
       
       <motion.section 
         initial={{ opacity: 0, y: 20 }}
@@ -26,41 +26,41 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
 
-const FeaturesSection = () => (
-  <section className="py-16 bg-white">
-    <div className="container max-w-6xl grid md:grid-cols-3 gap-8">
-      {FEATURES.map((feature, index) => (
-        <motion.div
-          key={feature.title}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
-        >
-          <Card className="h-full hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <feature.icon className="w-12 h-12 text-blue-600" />
-            </CardHeader>
-            <CardTitle>{feature.title}</CardTitle>
-            <CardContent>{feature.description}</CardContent>
-          </Card>
-        </motion.div>
-      ))}
-    </div>
-  </section>
-);
+// const FeaturesSection = () => (
+//   <section className="py-16 bg-white">
+//     <div className="container max-w-6xl grid md:grid-cols-3 gap-8">
+//       {FEATURES.map((feature, index) => (
+//         <motion.div
+//           key={feature.title}
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: index * 0.1 }}
+//         >
+//           <Card className="h-full hover:shadow-lg transition-shadow">
+//             <CardHeader>
+//               <feature.icon className="w-12 h-12 text-blue-600" />
+//             </CardHeader>
+//             <CardTitle>{feature.title}</CardTitle>
+//             <CardContent>{feature.description}</CardContent>
+//           </Card>
+//         </motion.div>
+//       ))}
+//     </div>
+//   </section>
+// );
 
-const FEATURES = [
-  {
-    title: "AI Transformations",
-    description: "Rewrite text with professional, casual, or creative styles",
-    icon: MagicWandIcon,
-  },
-  // Add more features...
-];
+// const FEATURES = [
+//   {
+//     title: "AI Transformations",
+//     description: "Rewrite text with professional, casual, or creative styles",
+//     // icon: MagicWandIcon,
+//   },
+//   // Add more features...
+// ];
